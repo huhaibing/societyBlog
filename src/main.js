@@ -9,6 +9,7 @@ import './assets/icon/iconfont.css'
 import $ from 'jquery'
 import './assets/css/bootstrap.min.css'
 import './assets/js/bootstrap.min.js'
+import './assets/iconfont/iconfont.css'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -3,14 +3,14 @@
         <div class="main">
             <div class="head_logo">
                 <!-- <span class="logo"></span> -->
-                <img src="../../../assets/logo.png" alt="">
+                <img src="../../../assets/logo2.png" alt="" style="width:40px;height:40px;">
             </div>
             <div class="head_search">
                     <el-input   placeholder="请输入内容"  v-model="input1"   >
                         <el-button slot="suffix" icon="el-icon-search" circle size=""></el-button>
-                    </el-input>  
+                    </el-input>
             </div>
-            
+
             <div class="head_nav">
                 <ul>
                     <li><a href="#home"><span class="icon iconfont icon-shouye-moren"><p>首页</p></span></a></li>
@@ -22,20 +22,20 @@
 </template>
 
 <script>
-    export default {
-    data() {
-        return {
-        input1: '',
-        name:'胡海兵'
-        }
+export default {
+  data () {
+    return {
+      input1: '',
+      name: '胡海兵'
     }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 
 .fixNav{
-    position: fixed; 
+    position: fixed;
     margin: 0px;
     width: 100%;
     height: 50px;
@@ -72,7 +72,7 @@
                 margin-top: 5px;
                 overflow: hidden!important;
             }
-            
+
         }
 
         .el-button{
@@ -124,4 +124,3 @@
     float: left!important;
 } */
 </style>
-

@@ -35,47 +35,47 @@
     </el-form>
 
   </div>
-</template> 
+</template>
 <script>
-    export default{
-        name:"Login",
-        data(){
-            return {
-                loginForm: {
-                username: 'admin',
-                password: '1111111'
-                },
-                passwordType: 'password',
-                loading: false,
-                showDialog: false,
-                redirect: undefined,
-                login:{
-                    title:'登录系统',
-                    login:'登录',
-                    username:'',
-                    password:'',
-                    any:'',
-                    thirdparty:'',
-                    thirdpartyTips:''
-                }
-            }
-        },
-        created(){
-
-        },
-        destroyed(){
-
-        },
-        methods:{
-            showPwd(){
-
-            },
-            handleLogin(){
-              alert("登录成功！");
-              this.$router.push("/admin/");
-            }
-        }
+export default{
+  name: 'Login',
+  data () {
+    return {
+      loginForm: {
+        username: 'admin',
+        password: '1111111'
+      },
+      passwordType: 'password',
+      loading: false,
+      showDialog: false,
+      redirect: undefined,
+      login: {
+        title: '登录系统',
+        login: '登录',
+        username: '',
+        password: '',
+        any: '',
+        thirdparty: '',
+        thirdpartyTips: ''
+      }
     }
+  },
+  created () {
+
+  },
+  destroyed () {
+
+  },
+  methods: {
+    showPwd () {
+
+    },
+    handleLogin () {
+      alert('登录成功！')
+              this.$router.push('/admin/')
+            }
+  }
+}
 </script>
 <style rel="stylesheet/scss" lang="scss">
   /* 修复input 背景不协调 和光标变色 */
@@ -192,4 +192,3 @@ $light_gray:#eee;
   }
 }
 </style>
-
