@@ -10,7 +10,10 @@ import $ from 'jquery'
 import './assets/css/bootstrap.min.css'
 import './assets/js/bootstrap.min.js'
 import './assets/iconfont/iconfont.css'
+import api from './axios/index'
 Vue.config.productionTip = false
+
+Vue.prototype.$api = api
 
 /* eslint-disable no-new */
 Vue.use(ElementUI)

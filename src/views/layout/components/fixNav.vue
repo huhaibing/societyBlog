@@ -13,8 +13,8 @@
 
             <div class="head_nav">
                 <ul>
-                    <li><a href="#home"><span class="icon iconfont icon-shouye-moren"><p>首页</p></span></a></li>
-                    <li><a href="#news"><span class="icon iconfont icon-gerenzhongxin-moren"><p>{{name}},您好！</p></span></a></li>
+                    <li><a @click="indexPage"><span class="icon iconfont icon-shouye-moren"><p>首页</p></span></a></li>
+                    <li><a @click="homePage"><span class="icon iconfont icon-gerenzhongxin-moren"><p>{{name}},您好！</p></span></a></li>
                 </ul>
             </div>
         </div>
@@ -28,6 +28,14 @@ export default {
       input1: '',
       name: '胡海兵'
     }
+  },
+  methods:{
+      indexPage(){
+          this.$router.push('/admin/index');
+      },
+      homePage(){
+          this.$router.push('/homePage');
+      }
   }
 }
 </script>

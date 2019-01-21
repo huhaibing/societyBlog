@@ -37,6 +37,7 @@
   </div>
 </template>
 <script>
+import {Message} from 'element-ui'
 export default{
   name: 'Login',
   data () {
@@ -71,9 +72,40 @@ export default{
 
     },
     handleLogin () {
-      alert('登录成功！')
-              this.$router.push('/admin/')
-            }
+      let fd = new FormData();
+      fd.append('username', this.loginForm.username);
+      fd.append('password', this.loginForm.password);
+      this.$api.post('/chatting/j_spring_security_check',fd)
+      .then(r =>{
+        if(r == null){
+
+        }
+        else{
+          this.$router.push('/admin/index')
+        }
+        // for( var a in r)
+          // console.log("key:"+a+'value:'+r[a])
+        // console.log(r.status)
+          // if(r.status == 'true'){
+          //   this.$router.push('/admin/index')
+          // }
+          // else {
+          //     Message({
+          //       message: '登录失败',
+          //       type: 'warning',
+          //       duration: 3 * 1000
+          //     })
+          // }
+          
+      })
+      .catch(error => {
+          Message({
+            message: error,
+            type: 'warning',
+            duration: 3 * 1000
+          })
+      });
+    }
   }
 }
 </script>
