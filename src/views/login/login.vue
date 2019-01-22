@@ -13,9 +13,10 @@
           :placeholder="login.username"
           name="username"
           type="text"
-          auto-complete="on"
         />
+        {{loginForm.username}}
       </el-form-item>
+
 
       <el-form-item >
 
@@ -24,13 +25,9 @@
           v-model="loginForm.password"
           :placeholder="login.password"
           name="password"
-          auto-complete="on"
-          @keyup.enter.native="handleLogin" />
-        <!-- <span class="show-pwd" >
-          <svg-icon icon-class="eye" />
-        </span> -->
+          />{{loginForm.password}}
       </el-form-item>
-
+      
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">{{ login.login }}</el-button>
     </el-form>
 
@@ -62,7 +59,10 @@ export default{
     }
   },
   created () {
-
+    //  var obj = this.$api;
+    //   for (var temp in obj){
+    //       console.log(temp+":"+obj[temp])
+    //   }
   },
   destroyed () {
 
@@ -72,10 +72,14 @@ export default{
 
     },
     handleLogin () {
-      let fd = new FormData();
-      fd.append('username', this.loginForm.username);
-      fd.append('password', this.loginForm.password);
-      this.$api.post('/chatting/j_spring_security_check',fd)
+      //form 格式上传，后端接受不到
+      // let fd = new FormData();
+      // fd.append('username', this.loginForm.username);
+      // fd.append('password', this.loginForm.password);
+      
+
+      var temp = 'username=' + this.loginForm.username + '&password=' + this.loginForm.password;
+      this.$api.post('/chatting/j_spring_security_check',temp)
       .then(r =>{
         if(r == null){
 
