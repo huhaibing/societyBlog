@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import login from '@/views/login/login.vue'
 import layout from '@/views/layout/layout.vue'
 import homepage from '@/views/homepage/homepage.vue'
+import signin from '@/views/signin/signin.vue'
 
 Vue.use(Router)
 
@@ -42,7 +43,6 @@ export default new Router({
       component: login
     },
     {
-      // 路由有问题
       path: '/homepage',
       name: 'homepage',
       component: homepage,
@@ -58,6 +58,11 @@ export default new Router({
           component: () => import('@/views/homepage/photoAlbum.vue')
         }
       ]
+    },
+    {
+      path: 'signin',
+      name: 'signin',
+      component: signin
     }
   ]
 })
