@@ -5,12 +5,10 @@
     <cover></cover>
     <mainNav></mainNav>
     <div class="contentContainer">
-      <!-- 模块之间切换--需要解决 -->
+      <!-- 模块之间切换 -->
       <transition name="fade-transform" mode="out-in">
         <keep-alive >
             <router-view />
-      <!-- <photoAlbum></photoAlbum> -->
-      <!-- <personal></personal> -->
         </keep-alive>
       </transition>
     </div>
@@ -59,11 +57,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .homepageContainer{
-    background-image: url('../../assets/bg.jpg');
     background-color: #ECECEC;
-    background-size: cover;
-    overflow: hidden;
-    min-height: 1000px;
+    height: auto;
   }
   .contentContainer{
     width: 920px;
@@ -71,11 +66,10 @@ export default {
   }
   .main{
     position: relative;
+    margin: auto;
     top:50px;
     width:920px;
-    min-width: 740px;
-    min-height: 1000px;
     height: auto;
-    margin: auto;
+
   }
 </style>

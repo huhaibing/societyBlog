@@ -3,16 +3,16 @@
   <div class="counter">
     <ul>
       <li>
-        <div class="num">{{followingNum}}</div>
+        <div class="num">{{personInfo.likeNum}}</div>
         <div class="name">关注</div>
       </li>
       <li>
-        <div class="num">{{followedNum}}</div>
+        <div class="num">{{personInfo.panNum}}</div>
         <div class="name">粉丝</div>
       </li>
       <li>
-        <div class="num">{{sharedNum}}</div>
-        <div class="name">分享</div>
+        <div class="num">{{personInfo.postNum}}</div>
+        <div class="name">微博</div>
       </li>
     </ul>
   </div>
@@ -22,10 +22,21 @@
 export default{
   data () {
     return {
-      followingNum: 10,
-      followedNum: 23,
-      sharedNum: 1
+      personInfo: {}
     }
+  },
+  created () {
+    this.$api.post('/chatting/user/getUser.do')
+      .then(r => {
+        this.personInfo = r.aaData
+        // for( var tt in this.dynamicList)
+        //   for (var m in tt)
+        //     console.log(m+":"+tt[m])
+      })
+      // eslint-disable-next-line handle-callback-err
+      .catch(error => {
+
+      })
   }
 }
 </script>

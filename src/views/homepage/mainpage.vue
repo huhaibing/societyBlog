@@ -7,7 +7,7 @@
         <card></card>
     </aside>
     <div class="content">
-      <moment></moment>
+      <moment v-for="(item,index) in dynamicList" :key="index" :post="item"></moment>
     </div>
   </div>
 </template>
@@ -24,6 +24,24 @@ export default {
     personInfo,
     card,
     moment
+  },
+  data () {
+    return {
+      dynamicList: []
+    }
+  },
+  created () {
+    this.$api.post('/chatting/post/getMyMoment.do')
+      .then(r => {
+        this.dynamicList = r.aaData
+        // for( var tt in this.dynamicList)
+        //   for (var m in tt)
+        //     console.log(m+":"+tt[m])
+      })
+      // eslint-disable-next-line handle-callback-err
+      .catch(error => {
+
+      })
   }
 }
 </script>

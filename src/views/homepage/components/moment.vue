@@ -2,55 +2,49 @@
 <!-- 博客模板 -->
     <div class="moment">
         <div>
-            <div class="profile"><img v-bind:src="imgUrl" style="width:50px;height=50px;"/></div>
+            <div class="profile"><img :src=this.post.userPortrait class="img-circle" style="width:50px;height=50px;"/></div>
             <div class="info">
                 <div class="operation">
                     <button><i class="iconfont icon-shouqi"></i></button>
-                    <div @click="unfold" id="op" class="op">
+                    <div id="op" class="op">
                         <ul>
                             <li>删除</li>
                             <li>分享</li>
                         </ul>
                     </div>
                 </div>
-                <div class="nickname">{{name}}</div>
-                <div><time>{{time}}</time>&nbsp;<span>来自</span>&nbsp;<span>{{phone}}</span></div>
+                <div class="nickname">{{post.userName}}</div>
+                <div><time>{{post.postDate}}</time></div>
             </div>
         </div>
         <div class="sharedContent">
             <div class="words">
-                <p>{{blog}}</p>
+                <p>{{post.description}}</p>
             </div>
-            <div class="pictures"></div>
+            <div class="pictures" >
+                <img v-for="item in post.pictures" :key="item" :src=item alt="图片加载失败"/>
+            </div>
         </div>
         <nav>
             <ul>
-                <li><i class="iconfont icon-yuedu"></i>&nbsp;&nbsp;阅读 {{yuedu_num}}</li>
-                <li><i class="iconfont icon-dianzan"></i>&nbsp;&nbsp;点赞 {{dianzan_num}}</li>
-                <li><i class="iconfont icon-shoucang"></i>&nbsp;&nbsp;收藏 {{shoucang_num}}</li>
+                <li><i class="iconfont icon-shoucang"></i>&nbsp;&nbsp;收藏</li>
+                <li><i class="iconfont icon-dianzan"></i>&nbsp;&nbsp;点赞 </li>
             </ul>
         </nav>
     </div>
 </template>
 <script>
 export default {
-  name: 'moment',
+  props: {
+    post: {
+      type: Object
+    }
+  },
   data () {
     return {
-      imgUrl: require('../../../assets/profile.png'),
-      name: '胡海兵',
-      time: '2019-01-01 00:00',
-      phone: 'iphoneX',
-      blog: 'Hello World !',
-      yuedu_num: '1289',
-      dianzan_num: '890',
-      shoucang_num: '534'
     }
   },
   methods: {
-    unfold: function () {
-      document.getElementById('op').style.display = 'block'
-    }
   }
 }
 </script>
@@ -82,7 +76,20 @@ export default {
     padding: 5px 15px 5px 90px;
 }
 .sharedContent{
+    min-height: 10px;
     border-bottom: 1px solid #F2F2F5;
+    .pictures{
+        width: 340px;
+        min-height: 110px;
+        margin-left: 85px;
+        text-align: left;
+
+    }
+    .pictures img{
+        width:100px;
+        height:100px;
+        margin: 0px 0px 5px 5px;
+    }
 }
 nav{
     width: 600px;
@@ -96,10 +103,10 @@ nav{
     }
     li{
         text-align: left;
-        padding: 5px 50px;
+        padding: 5px 100px;
         font-size: 14px;
     }
-    li:first-child,li:nth-child(2){
+    li:first-child{
     border-right: 1px solid #DAD5D5;
     }
     li:hover{
