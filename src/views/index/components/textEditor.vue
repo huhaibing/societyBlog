@@ -5,6 +5,13 @@
                 <img src="../../../assets/word.jpg">
             </div>
             <div class="text">
+                <el-input
+                    type="textarea"
+                    :autosize="{ minRows: 3}"
+                    placeholder="请输入内容"
+                    v-model="textarea">
+                </el-input>
+
             </div>
             <div class="button">
                 <div class="pic">
@@ -12,7 +19,7 @@
                     <span class="picName" @click="showUpPic()">图片</span>           
                 </div>
                 <div class="publish">
-                    <button>发布</button>
+                    <button @click="uploadMess()">发布</button>
                 </div>
             </div>
         </div>
@@ -27,11 +34,12 @@
                 <p>共{{picNum}}张,还能上传{{9-picNum}}张</p>
             </div>
             <div>
-                <el-upload action="https://jsonplaceholder.typicode.com/posts/"
+                <el-upload action="https://sm.ms/api/upload"
                     list-type="picture-card"
-                    :on-preview="handlePictureCardPreview"
+                    ref="upload"
                     :on-change="change"
                     :on-remove="handleRemove"
+                    :on-success="uploadSuccess"
                     :auto-upload="false">
                     <i class="el-icon-plus"></i>
                 </el-upload>
@@ -44,6 +52,7 @@
 </template>
 
 <script>
+import {Message} from 'element-ui'
 export default {
      data() {
       return {
@@ -51,29 +60,88 @@ export default {
         dialogVisible: false,
         title:'本地上传',
         picNum:0,
-        upPic:false
+        upPic:false,
+        fileList:[],
+        successLink:[],
+        textarea:''
       };
+    },
+    watch:{
+
     },
     methods: {
       handleRemove(file, fileList) {
           this.picNum = fileList.length;
+          this.fileList = fileList;
         console.log(file, fileList);
       },
       change(file, fileList){
         this.picNum = fileList.length;
-      },
-      handlePictureCardPreview(file) {
-        //   console.log("1");
-        this.picNum = this.picNum + 1;
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
+        this.fileList = fileList
       },
       close(){
           this.upPic = false;
       },
       showUpPic(){
           this.upPic = true;
-      }  
+      },
+      uploadMess(){
+        //   console.log("upload");
+        //   this.$refs.upload.submit();
+        var value="55db290787786fca3916701082583d13f8e6f4b4:leT7VVlBypxaq7LaVNMG-Ulz1TI=:eyJkZWFkbGluZSI6MTQ5NTU5MTQ1NywiYWN0aW9uIjoiZ2V0IiwidWlkIjoiMTk0OSIsImFpZCI6IjM0OTAiLCJmcm9tIjoiZmlsZSJ9"
+        var num =0;
+        var that = this;
+        var successLink = new Array();
+        for(var tt = 0 ;tt < this.fileList.length ; tt++){
+            var formData = new FormData();
+            formData.append('Token',value)
+            formData.append("file",this.fileList[tt].raw);
+            $.ajax({
+                url: 'http://up.imgapi.com/',
+                type: 'POST',
+                success: function(data){
+                    // console.log(data);
+                    // $('#res').html(JSON.stringify(data));
+                    console.log("上传成功，linkurl:"+data.linkurl);
+                    successLink.push(data.linkurl);
+                    num++;
+                    if(num == that.picNum) {
+                        // alert("全部上传完毕");
+                        that.successLink = successLink
+                        //上传动态
+                        let param = new URLSearchParams()
+                        param.append('description', that.textarea)
+                        param.append('pictures', that.successLink)
+                         that.$api.post('/chatting/post/insert.do',param)
+                         .then(r =>{
+                            
+                         })
+                         .catch(error => {
+                             Message({
+                                message: '动态上传失败',
+                                type: 'warning',
+                                duration: 3 * 1000
+                            })
+                         })
+                    }
+                    //window.location.reload();
+                },
+                error: function(data){
+                    console.log(data);
+                },
+                data:formData,
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        }
+
+      },
+      uploadSuccess(response, file, fileList){
+          console.log('success');
+        console.log(response);
+        console.log(response.code);
+      }
     }
 }
 </script>
@@ -98,11 +166,11 @@ export default {
             // overflow: hidden;
             float: left;
             width: 100%;
-            min-height: 100px;
-            padding: 5px;
-            border: 1px solid black;
+            // min-height: 100px;
+            // padding: 5px;
+            // border: 1px solid black;
             border-radius: 5px;
-            margin-top: 10px;
+            margin-top: 10px;   
         }
         .button{
             width: 600px;

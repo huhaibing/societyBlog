@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-      <fix-nav></fix-nav>
+      <fix-nav :personInfo='personInfo'></fix-nav>
       <div class="topTian"></div>
       <div class="main">
           <fix-left></fix-left>
@@ -13,7 +13,7 @@
                     </keep-alive>
                   </transition>
               </div>
-              <recommand></recommand>
+              <recommand :personInfo='personInfo'></recommand>
           </div>
       </div>
   </div>
@@ -28,39 +28,26 @@ import recommand from './components/recommand/recommand.vue'
         components:{fixNav,fixLeft,recommand},
         data(){
             return {
-                loginForm: {
-                username: 'admin',
-                password: '1111111'
-                },
-                passwordType: 'password',
-                loading: false,
-                showDialog: false,
-                redirect: undefined,
-                login:{
-                    title:'登录系统',
-                    login:'登录',
-                    username:'',
-                    password:'',
-                    any:'',
-                    thirdparty:'',
-                    thirdpartyTips:''
-                }
+                personInfo:{}
             }
         },
         created(){
-
+            this.$api.post('/chatting/user/getUser.do')
+            .then(r =>{
+                this.personInfo = r.aaData
+                // for( var tt in this.dynamicList)
+                //   for (var m in tt)
+                //     console.log(m+":"+tt[m])
+            })
+            .catch(error => {
+                
+            });
         },
         destroyed(){
 
         },
         methods:{
-            showPwd(){
-
-            },
-            handleLogin(){
-              alert("登录成功！");
-              this.$router.push("/admin/");
-            }
+            
         }
     }
 </script>

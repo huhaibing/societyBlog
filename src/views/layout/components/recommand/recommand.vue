@@ -1,6 +1,6 @@
 <template>
     <div class="recommand">
-        <person></person>
+        <person :personInfo='personInfo'></person>
         <topic></topic>
         <board></board>
     </div>
@@ -12,6 +12,11 @@ import topic from './topic.vue'
 import board from './board.vue'
 export default {
     name:'recommand',
+    props:{
+        personInfo:{
+            type:Object
+        }
+    },
     components:{person , topic,board},
     data(){
         return{

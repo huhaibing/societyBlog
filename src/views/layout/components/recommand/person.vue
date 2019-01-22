@@ -2,23 +2,23 @@
     <div class="person">
         <div class="bg"></div>
         <div class="headPic">
-            <img src="../../../../assets/person.png" alt="..." class="img-circle">
+            <img :src=personInfo.portrait alt="..." class="img-circle">
         </div>
         <div class="wrap">
-            <div class="title">{{name}}</div>
-            <div class="motto">{{motto}}</div>
+            <div class="title">{{personInfo.name}}</div>
+            <div class="motto">{{personInfo.motto}}</div>
             <div class="contend">
                 <ul>
                     <li>
-                        <div class="num">{{careNum}}</div>
+                        <div class="num">{{personInfo.likeNum}}</div>
                         <div class="name">关注</div>
                     </li>
                     <li>
-                        <div class="num">{{fanNum}}</div>
+                        <div class="num">{{personInfo.panNum}}</div>
                         <div class="name">粉丝</div>
                     </li>
                     <li>
-                        <div class="num">{{blogNum}}</div>
+                        <div class="num">{{personInfo.postNum}}</div>
                         <div class="name">微博</div>
                     </li>                    
                 </ul>
@@ -30,6 +30,11 @@
 
 <script>
 export default {
+    props:{
+        personInfo:{
+            type:Object
+        }
+    },
     data(){
         return{
             name:'胡海兵',
@@ -59,6 +64,7 @@ export default {
         position: absolute;
         width: 66px;
         height: 66px;
+        overflow: hidden;
         z-index: 10;
         top: 25px;
         left: 84px;

@@ -1,21 +1,21 @@
 <template>
     <div class="dynamic">
         <div class="headPic">
-            <img :src=post.headPic alt="..." class="img-circle"/>
+            <img :src=this.post.userPortrait alt="..." class="img-circle"/>
         </div>
         <div class="contend">
             <div class="name">
-                <p>{{post.name}}</P>
+                <p>{{post.userName}}</P>
             </div>
             <div class="time">
-                <p>{{post.time}}</p>
+                <p>{{post.postDate}}</p>
             </div>
             <div class="wordContend">
                 <div class="word">
-                    <p>{{post.content}}</p>
+                    <p>{{post.description}}</p>
                 </div>
                 <div class="pic">
-                    <div class="pp" v-for="item in post.pic" :key="item">
+                    <div class="pp" v-for="item in post.pictures" :key="item">
                         <img :src=item alt="网络不好，暂时无图" />
                     </div>
                 </div>
@@ -23,12 +23,12 @@
             <div class="footer">
                 <div class="collect">
                    <span class="icon iconfont icon-shoucang"></span> 
-                   <span v-if="post.collect">已收藏</span>
+                   <span v-if="post.collected">已收藏</span>
                    <span v-else>收藏</span>
                 </div>
                 <div class="thumb">
                     <span class="icon iconfont icon-z-like"></span>
-                    <span v-if="post.like">已点赞</span>
+                    <span v-if="post.liked">已点赞</span>
                     <span v-else>点赞</span>
                 </div>
             </div>
@@ -40,8 +40,18 @@
 export default {
     props:['post'],
     data(){
-        return{                
+        return{
+            //  userPortrait: '',
+            //  pictures:[]               
         }
+    },
+    created(){
+        // console.log(this.post.userPortrait)
+        // str ="'"+this.post.userPortrait+"'";
+        // // this.userPortrait = require('../../../assets/defaultHportrait.png')
+        // this.userPortrait = require(str)
+        // for(var tt = 0 ; tt < this.post.pictures.length ; tt++)
+        //     this.pictures.push(require(this.post.pictures[tt]))
     }
 }
 </script>
@@ -52,14 +62,14 @@ export default {
     width: 600px;
     background-color: white;
     margin-top: 30px;
-    min-height: 100px;
+    // min-height: 100px;
     overflow: hidden;
     padding: 20px 20px 4px 20px;
     border-radius: 20px;
     .headPic{
         width: 66px;
         float: left;
-        min-height: 300px;
+        // min-height: 300px;
         img{
             width: 66px;
             height: 66px;
@@ -69,7 +79,7 @@ export default {
         float: left;
         margin-left: 14px;
         width: 480px;
-        min-height: 300px;
+        // min-height: 300px;
         // background-color: aqua;
         // margin-top: 10px;
         .name{

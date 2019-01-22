@@ -42,7 +42,8 @@ export default {
     height: 1000px;
     // background-color: red;
     overflow: hidden;
-    
+    // background-color: aliceblue;
+    // background: black;
         ul {
                 list-style-type: none;
                 margin-top: 20px;
@@ -52,15 +53,16 @@ export default {
                 border-bottom: #87badb 2px solid;
                 li{
                     height: 30px;
-                    padding: 15px 50px 0px 20px ;
+                    padding: 0px 50px 0px 20px ;
                     text-align: left;
+                    line-height: 30px;
                     a{
                         color: white;
                         text-decoration:none;
                     }
                }
                li:hover{
-                   background-color: #13132f;
+                   background-color: #ffc09f;
                }
            }
             
