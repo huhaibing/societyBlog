@@ -1,4 +1,5 @@
 <template>
+<!-- 个人信息模板 -->
   <div class="personInfo">
     <header>
       <ul>

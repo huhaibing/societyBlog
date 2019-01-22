@@ -1,7 +1,8 @@
 <template>
+<!-- 封面模块 -->
   <div class="cover">
-    <img class="profile" src="../../../assets/profile.png">
-    <div class="nickname">{{nickname}} <i class="iconfont icon-nanxing"></i><i class="iconfont icon-nvxing"></i></div>
+    <img class="profile" v-bind:src="imgUrl" />
+    <div class="nickname">{{nickname}} <i class="iconfont icon-nanxing"></i><i class="iconfont icon-nvxing" hidden></i></div>
     <div class="signature">{{signature}}</div>
   </div>
 </template>
@@ -9,6 +10,7 @@
 export default {
   data () {
     return {
+      imgUrl: require('../../../assets/profile.png'),
       nickname: '胡海兵',
       signature: '机会是给有准备的人的'
     }

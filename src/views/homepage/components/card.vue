@@ -1,4 +1,5 @@
 <template>
+<!-- 相册卡片模块 -->
   <div class="card">
     <header>
       <div>相册</div>

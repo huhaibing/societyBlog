@@ -17,7 +17,6 @@
         {{loginForm.username}}
       </el-form-item>
 
-
       <el-form-item >
 
         <el-input
@@ -27,7 +26,7 @@
           name="password"
           />{{loginForm.password}}
       </el-form-item>
-      
+
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">{{ login.login }}</el-button>
     </el-form>
 
@@ -72,21 +71,19 @@ export default{
 
     },
     handleLogin () {
-      //form 格式上传，后端接受不到
+      // form 格式上传，后端接受不到
       // let fd = new FormData();
       // fd.append('username', this.loginForm.username);
       // fd.append('password', this.loginForm.password);
-      
 
-      var temp = 'username=' + this.loginForm.username + '&password=' + this.loginForm.password;
-      this.$api.post('/chatting/j_spring_security_check',temp)
-      .then(r =>{
-        if(r == null){
+      var temp = 'username=' + this.loginForm.username + '&password=' + this.loginForm.password
+      this.$api.post('/chatting/j_spring_security_check', temp)
+        .then(r => {
+          if (r == null) {
 
-        }
-        else{
-          this.$router.push('/admin/index')
-        }
+          } else {
+            this.$router.push('/admin/index')
+          }
         // for( var a in r)
           // console.log("key:"+a+'value:'+r[a])
         // console.log(r.status)
@@ -100,15 +97,14 @@ export default{
           //       duration: 3 * 1000
           //     })
           // }
-          
-      })
-      .catch(error => {
+        })
+        .catch(error => {
           Message({
             message: error,
             type: 'warning',
             duration: 3 * 1000
           })
-      });
+        })
     }
   }
 }

@@ -1,12 +1,18 @@
 <template>
 <div class="homepageContainer">
-  <fixNav></fixNav>
+  <fixNav :personInfo='personInfo'></fixNav>
   <div class="main">
     <cover></cover>
     <mainNav></mainNav>
     <div class="contentContainer">
-      <!-- <router-view></router-view> -->
-      <mainpage></mainpage>
+      <!-- 模块之间切换--需要解决 -->
+      <transition name="fade-transform" mode="out-in">
+        <keep-alive >
+            <router-view />
+      <!-- <photoAlbum></photoAlbum> -->
+      <!-- <personal></personal> -->
+        </keep-alive>
+      </transition>
     </div>
   </div>
 </div>
@@ -17,13 +23,35 @@ import fixNav from '@/views/layout/components/fixNav.vue'
 import mainNav from './components/mainNav.vue'
 import cover from './components/cover.vue'
 import mainpage from './mainpage.vue'
+import photoAlbum from './photoAlbum.vue'
+import personal from './personal.vue'
 export default {
   name: 'homepage',
   components: {
     fixNav,
     mainNav,
     cover,
-    mainpage
+    mainpage,
+    photoAlbum,
+    personal
+  },
+  data () {
+    return {
+      personInfo: {}
+    }
+  },
+  created () {
+    this.$api.post('/chatting/user/getUser.do')
+      .then(r => {
+        this.personInfo = r.aaData
+        // for( var tt in this.dynamicList)
+        //   for (var m in tt)
+        //     console.log(m+":"+tt[m])
+      })
+      // eslint-disable-next-line handle-callback-err
+      .catch(error => {
+
+      })
   }
 }
 </script>

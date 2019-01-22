@@ -23,24 +23,24 @@
 
 <script>
 export default {
-    props:{
-        personInfo:{
-            type:Object
-        }
-    },
+  props: {
+    personInfo: {
+      type: Object
+    }
+  },
   data () {
     return {
       input1: '',
       name: '胡海兵'
     }
   },
-  methods:{
-      indexPage(){
-          this.$router.push('/admin/index');
-      },
-      homePage(){
-          this.$router.push('/homePage');
-      }
+  methods: {
+    indexPage () {
+      this.$router.push('/admin/index')
+    },
+    homePage () {
+      this.$router.push('/homePage/mainpage')
+    }
   }
 }
 </script>

@@ -1,4 +1,5 @@
 <template>
+<!-- 粉丝计数模板 -->
   <div class="counter">
     <ul>
       <li>

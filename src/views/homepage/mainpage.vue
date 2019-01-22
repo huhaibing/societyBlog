@@ -1,4 +1,5 @@
 <template>
+<!-- 我的主页模块--主模块 -->
   <div class="contentContainer">
     <aside>
         <counter></counter>

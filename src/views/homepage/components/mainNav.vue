@@ -1,4 +1,5 @@
 <template>
+<!-- 主页导航栏 -->
   <nav>
     <ul>
       <li><a href="#">个人主页</a></li>
@@ -13,6 +14,7 @@ nav{
     max-width: 920px;
     height: 40px;
     background-color:rgba(255,255,255,1);
+    margin-bottom: 15px;
   }
 ul, li{
   display: inline-block;

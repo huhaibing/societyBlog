@@ -1,14 +1,14 @@
 <template>
+<!-- 博客模板 -->
     <div class="moment">
         <div>
-            <div class="profile"><img src="../../../assets/profile.png" style="width:50px;height=50px;"></div>
+            <div class="profile"><img v-bind:src="imgUrl" style="width:50px;height=50px;"/></div>
             <div class="info">
                 <div class="operation">
-                    <button @click="unfold"><i class="iconfont icon-shouqi"></i></button>
-                    <div id="op" class="op">
+                    <button><i class="iconfont icon-shouqi"></i></button>
+                    <div @click="unfold" id="op" class="op">
                         <ul>
                             <li>删除</li>
-                            <li>置顶</li>
                             <li>分享</li>
                         </ul>
                     </div>
@@ -28,7 +28,6 @@
                 <li><i class="iconfont icon-yuedu"></i>&nbsp;&nbsp;阅读 {{yuedu_num}}</li>
                 <li><i class="iconfont icon-dianzan"></i>&nbsp;&nbsp;点赞 {{dianzan_num}}</li>
                 <li><i class="iconfont icon-shoucang"></i>&nbsp;&nbsp;收藏 {{shoucang_num}}</li>
-                <li><i class="iconfont icon-comment-pen"></i>&nbsp;&nbsp;评论 {{pinglun_num}}</li>
             </ul>
         </nav>
     </div>
@@ -38,20 +37,19 @@ export default {
   name: 'moment',
   data () {
     return {
+      imgUrl: require('../../../assets/profile.png'),
       name: '胡海兵',
       time: '2019-01-01 00:00',
       phone: 'iphoneX',
       blog: 'Hello World !',
       yuedu_num: '1289',
       dianzan_num: '890',
-      shoucang_num: '534',
-      pinglun_num: '193'
+      shoucang_num: '534'
     }
   },
   methods: {
     unfold: function () {
-      var x = document.getElementById('op').style.visibility
-      alert(x)
+      document.getElementById('op').style.display = 'block'
     }
   }
 }
@@ -98,10 +96,10 @@ nav{
     }
     li{
         text-align: left;
-        padding: 5px 25px;
+        padding: 5px 50px;
         font-size: 14px;
     }
-    li:first-child,li:nth-child(2),li:nth-child(3){
+    li:first-child,li:nth-child(2){
     border-right: 1px solid #DAD5D5;
     }
     li:hover{
@@ -118,8 +116,7 @@ nav{
         background: none;
     }
     .op{
-        visibility: hidden;
-        // visibility: visible;
+        display: none;
         ul,li{
             margin: 0px;
             padding: 0px;

@@ -32,9 +32,22 @@ export default new Router({
       component: login
     },
     {
+      // 路由有问题
       path: '/homepage',
       name: 'homepage',
-      component: homepage
+      component: homepage,
+      children: [
+        {
+          path: 'mainpage',
+          name: 'mainpage',
+          component: () => import('@/views/homepage/mainpage.vue')
+        },
+        {
+          path: 'photoAlbum',
+          name: 'photoAlbum',
+          component: () => import('@/views/homepage/photoAlbum.vue')
+        }
+      ]
     }
   ]
 })
