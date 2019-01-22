@@ -15,19 +15,21 @@
                     <p>{{post.description}}</p>
                 </div>
                 <div class="pic">
-                    <div class="pp" v-for="item in post.pictures" :key="item">
+                    <div class="pp" v-for="(item,index) in post.pictures" :key="index">
                         <img :src=item alt="网络不好，暂时无图" />
                     </div>
                 </div>
             </div>
             <div class="footer">
                 <div class="collect">
-                   <span class="icon iconfont icon-shoucang"></span> 
+                   <span  v-if="post.collected" class="icon iconfont icon-shoucang1"></span> 
+                   <span  v-else class="icon iconfont icon-tuanduicankaoxian-"></span> 
                    <span v-if="post.collected">已收藏</span>
                    <span v-else>收藏</span>
                 </div>
                 <div class="thumb">
-                    <span class="icon iconfont icon-z-like"></span>
+                    <span  v-if="post.liked" class="icon iconfont icon-dianzan"></span>
+                    <span  v-else class="icon iconfont icon-z-like"></span>
                     <span v-if="post.liked">已点赞</span>
                     <span v-else>点赞</span>
                 </div>

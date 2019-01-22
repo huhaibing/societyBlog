@@ -40,7 +40,8 @@
                     :on-change="change"
                     :on-remove="handleRemove"
                     :on-success="uploadSuccess"
-                    :auto-upload="false">
+                    :auto-upload="false"
+                    >
                     <i class="el-icon-plus"></i>
                 </el-upload>
                 <el-dialog :visible.sync="dialogVisible">
@@ -78,9 +79,12 @@ export default {
       change(file, fileList){
         this.picNum = fileList.length;
         this.fileList = fileList
+        // console.log('tupianNum:',this.picNum);
       },
       close(){
-          this.upPic = false;
+          this.$refs.upload.clearFiles()
+          this.picNum = 0;
+          this.upPic = false
       },
       showUpPic(){
           this.upPic = true;
@@ -114,7 +118,18 @@ export default {
                         param.append('pictures', that.successLink)
                          that.$api.post('/chatting/post/insert.do',param)
                          .then(r =>{
-                            
+                            if(r.code == 0){
+                                //上传成功
+                                Message({
+                                    message: '动态上传成功',
+                                    type: 'success',
+                                    duration: 3 * 1000
+                                })
+                                that.$refs.upload.clearFiles()
+                                that.picNum = 0;
+                                that.upPic = false
+                                // alert('上传成功');
+                            }
                          })
                          .catch(error => {
                              Message({

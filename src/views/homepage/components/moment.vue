@@ -22,7 +22,7 @@
                 <p>{{post.description}}</p>
             </div>
             <div class="pictures" >
-                <img v-for="item in post.pictures" :key="item" :src=item alt="图片加载失败"/>
+                <img v-for="(item,index) in post.pictures" :key="index" :src=item alt="图片加载失败"/>
             </div>
         </div>
         <nav>

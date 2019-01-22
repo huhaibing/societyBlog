@@ -23,6 +23,16 @@ export default new Router({
           path: 'index',
           name: 'adminHello',
           component: () => import('@/views/index/index.vue')
+        },
+        {
+          path: 'collection',
+          name: 'collection',
+          component: () => import('@/views/shoucang/index.vue')
+        },
+        {
+          path: 'like',
+          name: 'like',
+          component: () => import('@/views/like/index.vue')
         }
       ]
     },

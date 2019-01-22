@@ -1,9 +1,9 @@
 <template>
     <div class="fixLeft">
         <ul>
-           <li><a href="#home">首页</a></li>
-           <li><a href="#news">我的收藏</a></li>
-           <li><a href="#news">我的赞</a></li>
+           <li><a @click="skip(1)">首页</a></li>
+           <li><a @click="skip(2)">我的收藏</a></li>
+           <li><a @click="skip(3)">我的赞</a></li>
         </ul>
 
         <ul>
@@ -26,6 +26,21 @@ export default {
     data(){
         return{
             name:'huhaibing'
+        }
+    },
+    methods:{
+        skip(num){
+            switch(num){
+                case 1:
+                this.$router.push('/admin/index')
+                break
+                case 2:
+                this.$router.push('/admin/collection')
+                break
+                default:
+                this.$router.push('/admin/index')
+                break
+            }
         }
     }
 
@@ -63,6 +78,7 @@ export default {
                }
                li:hover{
                    background-color: #ffc09f;
+                   cursor: pointer;
                }
            }
             
