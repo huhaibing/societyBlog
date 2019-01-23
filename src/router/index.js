@@ -56,6 +56,11 @@ export default new Router({
           path: 'photoAlbum',
           name: 'photoAlbum',
           component: () => import('@/views/homepage/photoAlbum.vue')
+        },
+        {
+          path: 'person',
+          name: 'person',
+          component: () => import('@/views/person/index.vue')
         }
       ]
     },

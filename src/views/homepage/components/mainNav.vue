@@ -2,12 +2,40 @@
 <!-- 主页导航栏 -->
   <nav>
     <ul>
-      <li><a href="#">个人主页</a></li>
-      <li><a href="#">我的相册</a></li>
-      <li><a href="#">个人资料</a></li>
+      <li @click="skip(1)"><a>个人主页</a></li>
+      <li @click="skip(2)"><a>我的相册</a></li>
+      <li @click="skip(3)"><a>个人资料</a></li>
     </ul>
   </nav>
 </template>
+<script>
+export default {
+  data(){
+    return{
+      
+    }
+  },
+  methods:{
+    skip(num){
+            switch(num){
+                case 1:
+                this.$router.push('/homePage/mainpage')
+                break
+                case 2:
+                this.$router.push('/homePage/photoAlbum')
+                break
+                case 3:
+                this.$router.push('/homePage/person')
+                break
+                default:
+                this.$router.push('/homePage/mainpage')
+                break
+            }
+        }
+  }
+}
+</script>
+
 <style scoped>
 nav{
     min-width: 600px;

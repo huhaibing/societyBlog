@@ -14,7 +14,7 @@
             <div class="head_nav">
                 <ul>
                     <li><a @click="indexPage"><span class="icon iconfont icon-shouye-moren"><p>首页</p></span></a></li>
-                    <li><a @click="homePage"><span class="icon iconfont icon-gerenzhongxin-moren"><p>{{personInfo.name}},您好！</p></span></a></li>
+                    <li><a @click="homePage"><span ><p>{{personInfo.name}},您好！</p></span></a></li>
                 </ul>
             </div>
         </div>

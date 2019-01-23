@@ -1,8 +1,9 @@
 <template>
 <div class="homepageContainer">
   <fixNav :personInfo='personInfo'></fixNav>
+  <div class="chou"></div>
   <div class="main">
-    <cover></cover>
+    <cover :personInfo='personInfo'></cover>
     <mainNav></mainNav>
     <div class="contentContainer">
       <!-- 模块之间切换 -->
@@ -56,6 +57,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .chou{
+    height: 50px;
+  }
   .homepageContainer{
     background-color: #ECECEC;
     height: auto;
@@ -65,11 +69,9 @@ export default {
     height: auto;
   }
   .main{
-    position: relative;
-    margin: auto;
-    top:50px;
+    margin: 0px auto;
     width:920px;
-    height: auto;
-
+    /* height: auto; */
+    overflow: hidden;
   }
 </style>

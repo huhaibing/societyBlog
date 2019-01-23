@@ -21,13 +21,13 @@
                 </div>
             </div>
             <div class="footer">
-                <div class="collect">
+                <div class="collect" @click="collect">
                    <span  v-if="post.collected" class="icon iconfont icon-shoucang1"></span> 
                    <span  v-else class="icon iconfont icon-tuanduicankaoxian-"></span> 
                    <span v-if="post.collected">已收藏</span>
                    <span v-else>收藏</span>
                 </div>
-                <div class="thumb">
+                <div class="thumb" @click="like">
                     <span  v-if="post.liked" class="icon iconfont icon-dianzan"></span>
                     <span  v-else class="icon iconfont icon-z-like"></span>
                     <span v-if="post.liked">已点赞</span>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import {Message} from 'element-ui'
 export default {
     props:['post'],
     data(){
@@ -54,6 +55,50 @@ export default {
         // this.userPortrait = require(str)
         // for(var tt = 0 ; tt < this.post.pictures.length ; tt++)
         //     this.pictures.push(require(this.post.pictures[tt]))
+    },
+    methods:{
+        collect(){
+            var status = this.post.collected 
+            if( status== false) status = true  //使用!取反，不能实现，只能这样写
+            else status =false
+            var temp = 'momentId=' + this.post.momentId
+            this.$api.post("/chatting/collections/collectOrCancel.do",temp)
+            .then(r => {
+                if(r.code == 0)
+                {
+                     Message({
+                        message: r.message,
+                        type: 'success',
+                        duration: 3 * 1000
+                    })
+                    this.post.collected = status
+                }
+            })
+            .catch(error => {
+
+            })
+        },
+        like(){
+            var status = this.post.liked
+            if( status== false) status = true  //使用!取反，不能实现，只能这样写
+            else status =false
+            var temp = 'momentId=' + this.post.momentId
+            this.$api.post("/chatting/like/likeOrCancel.do",temp)
+            .then(r => {
+                if(r.code == 0)
+                {
+                     Message({
+                        message: r.message,
+                        type: 'success',
+                        duration: 3 * 1000
+                    })
+                    this.post.liked = status
+                }
+            })
+            .catch(error => {
+
+            })
+        }
     }
 }
 </script>

@@ -16,7 +16,7 @@ export default {
   },
   created () {
 
-    this.$api.get('chatting/collections/myLikes.do')
+    this.$api.get('chatting/like/myLikes.do')
     .then(r =>{
           this.dynamicList = r.aaData 
     })

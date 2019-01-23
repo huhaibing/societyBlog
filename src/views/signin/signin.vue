@@ -51,7 +51,8 @@ export default {
   background-size: 100%;
 .border{
   width: 500px;
-  margin-left: 60%;
+  // margin-left: 60%;
+  margin: 0px auto;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.3);
   padding: 10px;

@@ -1,9 +1,9 @@
 <template>
     <div class="fixLeft">
         <ul>
-           <li><a @click="skip(1)">首页</a></li>
-           <li><a @click="skip(2)">我的收藏</a></li>
-           <li><a @click="skip(3)">我的赞</a></li>
+           <li @click="skip(1)"><a>首页</a></li>
+           <li @click="skip(2)"><a>我的收藏</a></li>
+           <li @click="skip(3)"><a>我的赞</a></li>
         </ul>
 
         <ul>
@@ -36,6 +36,9 @@ export default {
                 break
                 case 2:
                 this.$router.push('/admin/collection')
+                break
+                case 3:
+                this.$router.push('/admin/like')
                 break
                 default:
                 this.$router.push('/admin/index')

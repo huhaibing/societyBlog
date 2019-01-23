@@ -1,13 +1,22 @@
 <template>
 <!-- 封面模块 -->
   <div class="cover">
-    <img class="profile" v-bind:src="imgUrl" />
-    <div class="nickname">{{nickname}} <i class="iconfont icon-nanxing"></i><i class="iconfont icon-nvxing" hidden></i></div>
-    <div class="signature">{{signature}}</div>
+    <img class="profile" :src="personInfo.portrait" />
+    <div class="nickname">
+      {{personInfo.name}} 
+      <i v-if="personInfo.sex == '男'" class="iconfont icon-nanxing"></i>
+      <i v-else class="iconfont icon-nvxing" ></i>
+    </div>
+    <div class="signature">{{personInfo.motto}}</div>
   </div>
 </template>
 <script>
 export default {
+  props:{
+    personInfo:{
+      type:Object
+    }
+  },
   data () {
     return {
       imgUrl: require('../../../assets/profile.png'),
